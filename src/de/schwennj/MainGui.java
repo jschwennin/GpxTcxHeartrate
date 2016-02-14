@@ -4,6 +4,7 @@ import com.garmin.xmlschemas.trainingcenterdatabase.v2.TrainingCenterDatabaseT;
 import com.topografix.gpx._1._1.Gpx;
 
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.xml.bind.JAXBException;
 import javax.xml.datatype.XMLGregorianCalendar;
 import java.awt.event.ActionEvent;
@@ -12,6 +13,7 @@ import java.io.File;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 
 /**
  * Created by Jochen on 07.02.2016.
@@ -44,6 +46,10 @@ public class MainGui extends JPanel implements ActionListener {
 
         gpxHandler = new GpxHandler();
         tcxHandler = new TcxHandler();
+
+        fcGPX.setFileFilter(new FileNameExtensionFilter("*.gpx (GPX Track)", "gpx"));
+//        fcGPX.setCurrentDirectory();
+        fcTCX.setFileFilter(new FileNameExtensionFilter("*.tcx (Garmin Training)", "tcx"));
 
         gpx = null;
         tcx = null;
@@ -78,6 +84,7 @@ public class MainGui extends JPanel implements ActionListener {
             }
         }
         if (event.getSource() == importTCXButton) {
+            fcTCX.setCurrentDirectory(fcGPX.getCurrentDirectory());
             int returnVal = fcTCX.showOpenDialog(this);
 
             if (returnVal == JFileChooser.APPROVE_OPTION) {
@@ -100,6 +107,7 @@ public class MainGui extends JPanel implements ActionListener {
         }
         if (event.getSource() == mergeHeartrateButton) {
             if ((gpx != null) && (tcx != null)) {
+                fcOutput.setCurrentDirectory(fcGPX.getCurrentDirectory());
                 int returnVal = fcOutput.showOpenDialog(this);
 
                 if (returnVal == JFileChooser.APPROVE_OPTION) {
@@ -140,7 +148,7 @@ public class MainGui extends JPanel implements ActionListener {
     public static void main(String[] args) {
         JFrame frame = new JFrame("MainGui");
         frame.setContentPane(new MainGui().panel1);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
     }
