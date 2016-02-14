@@ -3,7 +3,6 @@ package de.schwennj;
 import com.garmin.xmlschemas.trainingcenterdatabase.v2.*;
 import com.topografix.gpx._1._1.Gpx;
 
-import javax.swing.*;
 import javax.xml.bind.*;
 import javax.xml.datatype.XMLGregorianCalendar;
 import java.io.File;
@@ -14,12 +13,6 @@ public class GpxTcxHeartrate {
     public static void main(String[] args) {
         Map<XMLGregorianCalendar, Short> heartrates;
         try {
-
-            javax.swing.SwingUtilities.invokeLater(new Runnable() {
-                public void run() {
-                    createAndShowGUI();
-                }
-            });
 
             GpxHandler gpxHandler = new GpxHandler();
             TcxHandler tcxHandler = new TcxHandler();
@@ -40,13 +33,6 @@ public class GpxTcxHeartrate {
         } catch (JAXBException e) {
             e.printStackTrace();
         }
-    }
-
-
-    private static void createAndShowGUI() {
-        MainGui gui = new MainGui();
-        gui.main(null);
-
     }
 
 }
