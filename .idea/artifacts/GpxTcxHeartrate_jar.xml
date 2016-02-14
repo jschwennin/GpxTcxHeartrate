@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="GpxTcxHeartrate:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/GpxTcxHeartrate_jar</output-path>
+    <root id="archive" name="GpxTcxHeartrate.jar">
+      <element id="module-output" name="GpxTcxHeartrate" />
+    </root>
+  </artifact>
+</component>
